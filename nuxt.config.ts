@@ -22,9 +22,9 @@ export default defineNuxtConfig({
     globalAppMiddleware: true,
     provider: {
       type: 'local',
-      pages: {
+      /*pages: {
         login: '/',
-      },
+      },*/
       endpoints: {
         signIn: { path: "/login", method: "post"},
         signOut: { path: "/logout", method: "get" },
