@@ -1,5 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app:{
+    head: {
+      title: "special-navi",
+      style: [{ children: "body { margin: 0px; }" }],
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: '' },
+        { name: 'format-detection', content: 'telephone=no' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'stylesheet', href:"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" },
+        { href: 'https://fonts.googleapis.com/icon?family=Material+Icons', rel: 'stylesheet' },
+      ],
+    },
+  },
   modules: ['@sidebase/nuxt-auth'],
   auth: {
     globalAppMiddleware: true,
