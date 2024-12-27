@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   },
   modules: ['@sidebase/nuxt-auth'],
   auth: {
-    globalAppMiddleware: true,
+    //globalAppMiddleware: true,
     provider: {
       type: 'local',
       /*pages: {
