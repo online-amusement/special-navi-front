@@ -54,6 +54,6 @@ button {
     width: 300px;
     height: 40px;
     color: #fff;
-    background: #0000FF;
+    background:#00F ;
 }
 </style>
