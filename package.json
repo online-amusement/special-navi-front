@@ -13,7 +13,8 @@
     "nuxt": "^3.14.1592",
     "sass-loader": "^14.1.1",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@sidebase/nuxt-auth": "^0.10.0",
