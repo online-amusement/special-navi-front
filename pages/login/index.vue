@@ -4,11 +4,11 @@
     </div>
     <div class="detail-container">
         <div class="name-container">
-            <label class="name-label">氏名：</label>
+            <label class="name-label">氏名</label>
             <input type="text" />
         </div>
         <div class="password-container">
-            <label class="pass-label">パスワード：</label>
+            <label class="pass-label">パスワード</label>
             <input type="text" />
         </div>
         <div class="login_button">
@@ -17,6 +17,7 @@
     </div>
 </template>
 <script lang="ts" setup>
+import { ref, onMounted } from 'vue';
 
 </script>
 <style lang="scss" scoped>
@@ -29,21 +30,22 @@
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+    align-items: center;
 }
 .password-container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .name-label {
-    width: max-content;
-    margin: 5px 34px;
+    letter-spacing: 35px;
 }
 .pass-label {
-    width: max-content;
-    margin: 5px 10px;
+    letter-spacing: 5px;
 }
 input {
     width: 250px;
+    height: 30px;
 }
 .login_button {
     display: flex;
@@ -51,7 +53,7 @@ input {
     margin-top: 50px;
 }
 button {
-    width: 300px;
+    width: 350px;
     height: 40px;
     color: #fff;
     background:#00F ;
