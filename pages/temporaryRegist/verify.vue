@@ -65,7 +65,7 @@ import Response from '~/apis/response';
 import * as yup from 'yup';
 
 const urlParams: any = ref([]);
-const apiToken = ref('');
+const token = ref('');
 const name = ref('');
 const password = ref('');
 const postalCode = ref();
@@ -85,6 +85,16 @@ const formData = reactive({
     tel
 })
 
+onMounted(() =>{
+    verifyToken();
+})
+
+const verifyToken = (() => {
+    const url = location.search
+    urlParams.value = url.slice(7);
+    console.log(urlParams.value)
+    token.value = urlParams.value;
+})
 
 watch(postalCode, (newcode) => {
     postalCode.value = newcode
@@ -129,13 +139,6 @@ const validate = (values: any) => {
 }
 
 
-const verifyToken = (() => {
-    const url = location.search
-    urlParams.value = url.slice(7);
-    console.log(urlParams.value)
-    apiToken.value = urlParams.value;
-})
-
 const infoSent = (async () => {
     const values = {
         name: name.value,
@@ -151,13 +154,17 @@ const infoSent = (async () => {
         //バリデーションエラーの場合は何も返さない
         return 
     }
-    const response = await Response.officialRegistration(name.value, password.value, apiToken.value, postalCode.value, address.value, address2.value, address3.value, tel.value)
-    console.log(response)
-    navigateTo('/login')
-})
-
-onMounted(() =>{
-    verifyToken();
+    const response = await Response.officialRegistration(name.value, password.value, token.value, postalCode.value, address.value, address2.value, address3.value, tel.value)
+    console.log(response.data)
+    console.log(token.value)
+    localStorage.setItem("auth._token", token.value)
+    if(token.value)
+    {
+        navigateTo('/login')
+    }else {
+        return
+    }
+    
 })
 </script>
 <style lang="scss" scoped>
