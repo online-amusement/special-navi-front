@@ -1,14 +1,15 @@
 import * as Member from "~/entities/Member";
-let domain = "http://local.navi/api";
+let domain = "http://local.navi" + "/api";
 
 //headerにトークン付与
 const headers = computed(() => {
-    const tokenString = localStorage.getItem("auth.token")
-
+    const tokenString = localStorage.getItem(
+      'auth._token'
+    );
     return new Headers({
-        Authorization: "Bearer " + tokenString
+      Authorization: 'Bearer ' + tokenString
     })
-})
+  });
 
 //型定義
 
@@ -17,7 +18,7 @@ type Member = {
     name: string,
     email: string,
     password: string,
-    apiToken: string,
+    token: string,
     postalCode: string,
     address: string,
     address2: string,
@@ -31,6 +32,7 @@ type Member = {
 const temporaryRegistration = (data: Member) => {
     return useFetch(domain + "/member/temporary-registration", {
         method: "POST",
+        headers: headers,
         body: {
             email: data.email
         }
@@ -43,7 +45,7 @@ const officialRegistration = (data: Member) => {
         body: {
             name: data.name,
             passsword: data.password,
-            apiToken: data.apiToken,
+            token: data.token,
             postalCode: data.postalCode,
             address: data.address,
             address2: data.address2,
@@ -56,6 +58,7 @@ const officialRegistration = (data: Member) => {
 const login = (data: Member) => {
     return useFetch(domain + "/login", {
         method: "POST",
+        headers: headers,
         body: {
             email: data.email,
             password: data.password
@@ -63,10 +66,19 @@ const login = (data: Member) => {
         }
     })
 }
+//ユーザー情報
+const me = (data: Member) => {
+    return useFetch(domain + "/me", {
+        method: "GET",
+        headers: headers,
+        
+    })
+}
 //住所検索
 const searchAddress = (data: Member) => {
     return useFetch(domain + "/member/search-address", {
         method: "POST",
+        headers: headers,
         body: {
             postalCode: data.postalCode
         }
@@ -74,7 +86,10 @@ const searchAddress = (data: Member) => {
 }
 
 export {
+    domain,
+    headers,
     login,
+    me,
     temporaryRegistration, 
     officialRegistration,
     searchAddress

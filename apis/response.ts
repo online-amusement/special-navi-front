@@ -10,11 +10,11 @@ export default class Response extends Basic {
         })
     }
     //新規会員登録
-    public static officialRegistration(name: string, password: string, apiToken: string, postalCode: string, address: string, address2: string, address3: string, tel: number): Promise<Member> { 
+    public static officialRegistration(name: string, password: string, token: string, postalCode: string, address: string, address2: string, address3: string, tel: number): Promise<Member> { 
         return this.createPromise(SpaNavi.officialRegistration, {
             name: name,
             password: password,
-            apiToken: apiToken,
+            token: token,
             postalCode: postalCode,
             address: address,
             address2: address2,
@@ -27,6 +27,12 @@ export default class Response extends Basic {
         return this.createPromise(SpaNavi.login, {
             email: email,
             password: password
+        })
+    }
+    //ユーザー情報
+    public static me(): Promise<Member> {
+        return this.createPromise(SpaNavi.me, {
+        
         })
     }
     //住所取得

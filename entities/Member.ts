@@ -5,7 +5,7 @@ type MemberEntities = {
     name: string,
     email: string,
     password: string,
-    apiToken: string,
+    token: string,
     postalCode: string,
     address: string,
     address2: string,

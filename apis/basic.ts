@@ -3,17 +3,17 @@ export default class Basic {
         let combinedParams = Object.assign(parameter);
 
         if(token) {
-            combinedParams["Authorization"] = localStorage.getItem("auth.token")
+            combinedParams["Authorization"] = localStorage.getItem("auth._token")
         }
         return new Promise(async (resolve,reject) => {
             try 
             {
                 const response = await callback(combinedParams);
-                return resolve(response.data.value)
+                resolve(response.data.value)
             }
             catch(error)
             {
-                return reject(error)
+                reject(error)
             }
         });
     }
